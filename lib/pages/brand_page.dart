@@ -1,5 +1,7 @@
 import 'package:firebase_admin_app_flutter/providers/telescope_provider.dart';
+import 'package:firebase_admin_app_flutter/utils/widget_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 
 class BrandPage extends StatelessWidget {
@@ -28,15 +30,33 @@ class BrandPage extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final brand = provider.brandList[index];
                     return ListTile(
-                      title: Text(brand.name),
+                      title: Text(
+                        brand.name,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge!
+                            .copyWith(color: Colors.white),
+                      ),
                     );
                   },
                 );
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-
+        onPressed: () {
+          showSingleTextInputDialog(
+            context: context,
+            title: 'Add Brand',
+            onSubmit: (value) {
+              EasyLoading.show(status: 'Please wait');
+              Provider.of<TelescopeProvider>(context, listen: false)
+                  .addBrand(value)
+                  .then((value) {
+                EasyLoading.dismiss();
+                showMsg(context, 'Brand Added');
+              });
+            },
+          );
         },
         child: const Icon(Icons.add),
       ),
