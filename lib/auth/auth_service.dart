@@ -1,3 +1,4 @@
+import 'package:firebase_admin_app_flutter/db/db_helper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
@@ -9,10 +10,11 @@ class AuthService {
   static Future<bool> loginAtAdmin(String email, String password) async {
     final credential = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
-    return credential.user != null;
+    //check uid xem có phải admin không ? vì có thể trùng với user
+    return DBHelper.isAdmin(credential.user!.uid);
   }
 
-  static Future<void> logout(){
+  static Future<void> logout() {
     return _auth.signOut();
   }
 }
