@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: Colors.white,
       body: Center(
         child: Form(
           key: _formKey,
@@ -41,6 +41,7 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: TextFormField(
+                  style: const TextStyle(color: Colors.black),
                   keyboardType: TextInputType.emailAddress,
                   controller: _emailController,
                   decoration: const InputDecoration(
@@ -59,6 +60,7 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: TextFormField(
+                  style: const TextStyle(color: Colors.black),
                   obscureText: true,
                   controller: _passwordController,
                   decoration: const InputDecoration(
@@ -76,7 +78,16 @@ class _LoginPageState extends State<LoginPage> {
               ),
               ElevatedButton(
                   onPressed: _authenticate,
-                  child: const Text('Login at Admin')),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      'Login at Admin',
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium!
+                          .copyWith(fontWeight: FontWeight.bold),
+                    ),
+                  )),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
