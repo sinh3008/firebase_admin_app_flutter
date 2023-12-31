@@ -45,6 +45,7 @@ class _LoginPageState extends State<LoginPage> {
                   keyboardType: TextInputType.emailAddress,
                   controller: _emailController,
                   decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
                     filled: true,
                     prefixIcon: Icon(Icons.email),
                     labelText: 'Email Address',
@@ -64,6 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                   obscureText: true,
                   controller: _passwordController,
                   decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
                     filled: true,
                     prefixIcon: Icon(Icons.email),
                     labelText: 'Password (at least 6 characters)',

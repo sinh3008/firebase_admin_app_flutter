@@ -14,6 +14,7 @@ class AuthService {
     return DBHelper.isAdmin(credential.user!.uid);
   }
 
+  //logout
   static Future<void> logout() {
     return _auth.signOut();
   }

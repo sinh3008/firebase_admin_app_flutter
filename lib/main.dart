@@ -5,6 +5,7 @@ import 'package:firebase_admin_app_flutter/pages/dashboard_page.dart';
 import 'package:firebase_admin_app_flutter/pages/login_page.dart';
 import 'package:firebase_admin_app_flutter/pages/view_telescope_page.dart';
 import 'package:firebase_admin_app_flutter/providers/telescope_provider.dart';
+import 'package:firebase_admin_app_flutter/utils/color.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -39,10 +40,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: "Muli",
         scaffoldBackgroundColor: const Color(0xff1d1c21),
+        inputDecorationTheme: const InputDecorationTheme(
+            border: InputBorder.none,
+          fillColor: kBgItem
+        ),
         appBarTheme: AppBarTheme(
           color: const Color(0xff1d1c21),
           centerTitle: true,
-          titleTextStyle: Theme.of(context)
+          titleTextStyle: Theme
+              .of(context)
               .textTheme
               .titleLarge!
               .copyWith(color: Colors.white),

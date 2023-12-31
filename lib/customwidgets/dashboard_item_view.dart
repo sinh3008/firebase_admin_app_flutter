@@ -1,4 +1,5 @@
 import 'package:firebase_admin_app_flutter/models/dashboard_model.dart';
+import 'package:firebase_admin_app_flutter/utils/color.dart';
 import 'package:flutter/material.dart';
 
 class DashboardItemView extends StatelessWidget {
@@ -15,8 +16,8 @@ class DashboardItemView extends StatelessWidget {
       splashColor: Colors.transparent,
       onTap: () => onPress(model.routeName),
       child: Card(
-        color: const Color(0xffc0dedc),
-        // color: const Color(0xfff1eee9),
+        color: kBgItem,
+        // color.dart: const Color(0xfff1eee9),
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius:
