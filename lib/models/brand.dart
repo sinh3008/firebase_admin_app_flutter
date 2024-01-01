@@ -14,6 +14,3 @@ class Brand with _$Brand {
   factory Brand.fromJson(Map<String, dynamic> json) => _$BrandFromJson(json);
 }
 
-const String collectionBrand = 'Brands';
-const String brandFieldId = 'id';
-const String brandFieldName = 'name';

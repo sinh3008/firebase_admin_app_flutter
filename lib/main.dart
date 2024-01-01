@@ -3,6 +3,7 @@ import 'package:firebase_admin_app_flutter/pages/add_telescope_page.dart';
 import 'package:firebase_admin_app_flutter/pages/brand_page.dart';
 import 'package:firebase_admin_app_flutter/pages/dashboard_page.dart';
 import 'package:firebase_admin_app_flutter/pages/login_page.dart';
+import 'package:firebase_admin_app_flutter/pages/telescope_details_page.dart';
 import 'package:firebase_admin_app_flutter/pages/view_telescope_page.dart';
 import 'package:firebase_admin_app_flutter/providers/telescope_provider.dart';
 import 'package:firebase_admin_app_flutter/utils/color.dart';
@@ -89,6 +90,13 @@ class MyApp extends StatelessWidget {
             path: ViewTelescopePage.routeName,
             name: ViewTelescopePage.routeName,
             builder: (context, state) => const ViewTelescopePage(),
+            routes: [
+              GoRoute(
+                path: TelescopeDetailsPage.routeName,
+                name: TelescopeDetailsPage.routeName,
+                builder: (context, state) =>  TelescopeDetailsPage(id: state.extra! as String),
+              ),
+            ]
           ),
           GoRoute(
             path: BrandPage.routeName,

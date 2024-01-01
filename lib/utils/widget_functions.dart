@@ -17,7 +17,8 @@ showSingleTextInputDialog({
         child: TextFormField(
           controller: controller,
           autofocus: true,
-          decoration: InputDecoration(labelText: title),
+          decoration: InputDecoration(
+              labelText: title, border: const OutlineInputBorder()),
         ),
       ),
       actions: [
