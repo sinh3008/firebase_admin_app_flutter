@@ -105,33 +105,41 @@ class _AddTelescopePageState extends State<AddTelescopePage> {
                 ],
               ),
             ),
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Consumer<TelescopeProvider>(
-                  builder: (context, provider, child) =>
-                      DropdownButtonFormField<Brand>(
-                    decoration: const InputDecoration(border: InputBorder.none),
-                    hint: const Text('Select Brand'),
-                    isExpanded: true,
-                    value: brand,
-                    validator: (value) {
-                      if (value == null) {
-                        return 'Please select a brand';
-                      }
-                      return null;
-                    },
-                    items: provider.brandList
-                        .map((item) => DropdownMenuItem<Brand>(
-                              value: item,
-                              child: Text(item.name),
-                            ))
-                        .toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        brand = value;
-                      });
-                    },
+            SizedBox(
+              height: 80,
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Consumer<TelescopeProvider>(
+                    builder: (context, provider, child) =>
+                        DropdownButtonFormField<Brand>(
+                      decoration: const InputDecoration(border: InputBorder.none),
+                      // hint: const Text('Select Brand'),
+                      isExpanded: true,
+
+                      value: brand,
+                      validator: (values) {
+                        if (values == null) {
+                          return 'Please select a brand';
+                        }
+                        return null;
+                      },
+                      items: provider.brandList
+                          .map((items) => DropdownMenuItem<Brand>(
+                                value: items,
+                                child: Text(items.name),
+                              ))
+                          .toList(),
+                      onChanged: (value) {
+                        provider.brandList.forEach((item) {
+                          print(item.name); // In ra tên của mỗi item trong brandList
+                        });
+
+                        setState(() {
+                          brand = value;
+                        });
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -197,7 +205,7 @@ class _AddTelescopePageState extends State<AddTelescopePage> {
                 controller: _weightController,
                 decoration: const InputDecoration(
                     filled: true, labelText: 'Weight(lb)'),
-                validator: (value) {
+                validator: (String? value) {
                   if (value == null || value.isEmpty) {
                     return 'This field must not be empty';
                   }

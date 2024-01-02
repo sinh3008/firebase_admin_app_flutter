@@ -2,6 +2,7 @@ import 'package:firebase_admin_app_flutter/auth/auth_service.dart';
 import 'package:firebase_admin_app_flutter/pages/add_telescope_page.dart';
 import 'package:firebase_admin_app_flutter/pages/brand_page.dart';
 import 'package:firebase_admin_app_flutter/pages/dashboard_page.dart';
+import 'package:firebase_admin_app_flutter/pages/description_page.dart';
 import 'package:firebase_admin_app_flutter/pages/login_page.dart';
 import 'package:firebase_admin_app_flutter/pages/telescope_details_page.dart';
 import 'package:firebase_admin_app_flutter/pages/view_telescope_page.dart';
@@ -42,14 +43,11 @@ class MyApp extends StatelessWidget {
         fontFamily: "Muli",
         scaffoldBackgroundColor: const Color(0xff1d1c21),
         inputDecorationTheme: const InputDecorationTheme(
-            border: InputBorder.none,
-          fillColor: kBgItem
-        ),
+            border: InputBorder.none, fillColor: kBgItem),
         appBarTheme: AppBarTheme(
           color: const Color(0xff1d1c21),
           centerTitle: true,
-          titleTextStyle: Theme
-              .of(context)
+          titleTextStyle: Theme.of(context)
               .textTheme
               .titleLarge!
               .copyWith(color: Colors.white),
@@ -94,9 +92,18 @@ class MyApp extends StatelessWidget {
               GoRoute(
                 path: TelescopeDetailsPage.routeName,
                 name: TelescopeDetailsPage.routeName,
-                builder: (context, state) =>  TelescopeDetailsPage(id: state.extra! as String),
+                builder: (context, state) =>
+                    TelescopeDetailsPage(id: state.extra! as String),
+                routes: [
+                  GoRoute(
+                    path: DescriptionPage.routeName,
+                    name: DescriptionPage.routeName,
+                    builder: (context, state) =>
+                        DescriptionPage(id: state.extra! as String),
+                  ),
+                ],
               ),
-            ]
+            ],
           ),
           GoRoute(
             path: BrandPage.routeName,

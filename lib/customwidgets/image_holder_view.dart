@@ -15,7 +15,7 @@ class ImageHolderView extends StatelessWidget {
       height: 80,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.white, width: 1.5)
+        border: Border.all(color: Colors.black, width: 1.5)
       ),
       child: InkWell(
         onTap: onImagePressed,

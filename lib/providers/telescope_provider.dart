@@ -18,8 +18,7 @@ class TelescopeProvider extends ChangeNotifier {
     return DBHelper.addBrand(brand);
   }
 
-  //lay danh sach tat ca brand
-  getAllBrands() {
+  getAllTelescopes() {
     DBHelper.getAllTelescopes().listen((snapshot) {
       telescopeList = List.generate(snapshot.docs.length,
           (index) => Telescope.fromJson(snapshot.docs[index].data()));
@@ -27,7 +26,8 @@ class TelescopeProvider extends ChangeNotifier {
     });
   }
 
-  getAllTelescopes() {
+  //lay danh sach tat ca brand
+  getAllBrands() {
     DBHelper.getAllBrands().listen((snapshot) {
       brandList = List.generate(snapshot.docs.length,
           (index) => Brand.fromJson(snapshot.docs[index].data()));
@@ -43,7 +43,14 @@ class TelescopeProvider extends ChangeNotifier {
   }
 
   Future<void> updateTelescopeField(String id, String field, dynamic value) {
-    return DBHelper.updateTelescopeField(id, {field : value});
+    return DBHelper.updateTelescopeField(id, {field: value});
+  }
+
+  Future<void> deleteImage(String id, ImageModel image) async {
+    final photoRef = FirebaseStorage.instance
+        .ref()
+        .child('${image.directoryName}${image.imageName}');
+    return photoRef.delete();
   }
 
   //upload brand len firebase
