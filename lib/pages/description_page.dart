@@ -1,15 +1,18 @@
-import 'package:firebase_admin_app_flutter/models/telescope.dart';
-import 'package:firebase_admin_app_flutter/providers/telescope_provider.dart';
-import 'package:firebase_admin_app_flutter/utils/widget_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_admin_app_flutter/providers/telescope_provider.dart';
+import 'package:firebase_admin_app_flutter/utils/constants.dart';
+import 'package:firebase_admin_app_flutter/utils/widget_functions.dart';
 
 class DescriptionPage extends StatefulWidget {
   static const String routeName = 'description';
   final String id;
 
-  const DescriptionPage({super.key, required this.id});
+  const DescriptionPage({
+    super.key,
+    required this.id,
+  });
 
   @override
   State<DescriptionPage> createState() => _DescriptionPageState();
@@ -18,6 +21,12 @@ class DescriptionPage extends StatefulWidget {
 class _DescriptionPageState extends State<DescriptionPage> {
   final _controller = TextEditingController();
   String? description;
+
+  /*@override
+  void initState() {
+    _controller.text = telescopeDescription;
+    super.initState();
+  }*/
 
   @override
   void didChangeDependencies() {
@@ -34,8 +43,12 @@ class _DescriptionPageState extends State<DescriptionPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text('Description'),
         actions: [
-          IconButton(onPressed: _saveDescription, icon: const Icon(Icons.save)),
+          IconButton(
+            onPressed: _saveDescription,
+            icon: const Icon(Icons.save),
+          )
         ],
       ),
       body: Container(
@@ -46,7 +59,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
           controller: _controller,
           maxLines: 1000,
           autofocus: true,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             border: OutlineInputBorder(),
           ),
         ),
@@ -61,19 +74,19 @@ class _DescriptionPageState extends State<DescriptionPage> {
   }
 
   void _saveDescription() {
-    if (_controller.text.isEmpty) {
+    if(_controller.text.isEmpty) {
       showMsg(context, 'Field is empty');
       return;
     }
     EasyLoading.show(status: 'Please wait');
     Provider.of<TelescopeProvider>(context, listen: false)
-        .updateTelescopeField(widget.id, 'description', _controller.text)
-        .then((value) {
-      showMsg(context, 'Description Update');
+    .updateTelescopeField(widget.id, 'description', _controller.text)
+    .then((value) {
+      showMsg(context, 'Description Updated');
       EasyLoading.dismiss();
-    }).catchError((error) {
+    })
+    .catchError((error) {
       EasyLoading.dismiss();
-      showMsg(context, 'Error');
     });
   }
 }

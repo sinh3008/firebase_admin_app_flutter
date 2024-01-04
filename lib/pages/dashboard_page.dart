@@ -1,109 +1,102 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:firebase_admin_app_flutter/auth/auth_service.dart';
 import 'package:firebase_admin_app_flutter/customwidgets/dashboard_item_view.dart';
 import 'package:firebase_admin_app_flutter/models/dashboard_model.dart';
 import 'package:firebase_admin_app_flutter/pages/login_page.dart';
+import 'package:firebase_admin_app_flutter/pages/order_details_Page.dart';
+import 'package:firebase_admin_app_flutter/providers/order_provider.dart';
 import 'package:firebase_admin_app_flutter/providers/telescope_provider.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
+import 'package:firebase_admin_app_flutter/providers/user_provider.dart';
 
-class DashBoardPage extends StatefulWidget {
+class DashboardPage extends StatefulWidget {
   static const String routeName = '/';
 
-  const DashBoardPage({super.key});
+  const DashboardPage({super.key});
 
   @override
-  State<DashBoardPage> createState() => _DashBoardPageState();
+  State<DashboardPage> createState() => _DashboardPageState();
 }
 
-class _DashBoardPageState extends State<DashBoardPage> {
+class _DashboardPageState extends State<DashboardPage> {
+
+  Future<void> setupInteractedMessage() async {
+    // Get any messages which caused the application to open from
+    // a terminated state.
+    RemoteMessage? initialMessage =
+    await FirebaseMessaging.instance.getInitialMessage();
+
+    // If the message also contains a data property with a "type" of "chat",
+    // navigate to a chat screen
+    if (initialMessage != null) {
+      _handleMessage(initialMessage);
+    }
+
+    // Also handle any interaction when the app is in the background via a
+    // Stream listener
+    FirebaseMessaging.onMessageOpenedApp.listen(_handleMessage);
+  }
+
+  void _handleMessage(RemoteMessage message) {
+    if (message.data['key'] == 'neworder') {
+      final orderId = message.data['value'];
+      //print('Order Doc ID: ${message.data['value']}');
+      EasyLoading.show(status: 'Redirecting...');
+      Future.delayed(const Duration(seconds: 3), () {
+        EasyLoading.dismiss();
+        context.goNamed(OrderDetailsPage.routeName, extra: orderId);
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    setupInteractedMessage();
+    super.initState();
+  }
 
   @override
   void didChangeDependencies() {
     Provider.of<TelescopeProvider>(context, listen: false).getAllBrands();
     Provider.of<TelescopeProvider>(context, listen: false).getAllTelescopes();
+    Provider.of<OrderProvider>(context, listen: false).getAllOrders();
+    Provider.of<UserProvider>(context, listen: false).getAllUsers();
     super.didChangeDependencies();
   }
-
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          '',
-          style: TextStyle(color: Colors.white),
-        ),
-        centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {
-              AuthService.logout()
-                  .then((value) => context.goNamed(LoginPage.routeName));
-            },
-            icon: const Icon(
-              Icons.logout,
-              color: Colors.white,
-            ),
-          ),
-        ],
-      ),
-      body: SizedBox(
-        width: width,
-        height: height,
-        child: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              width: width,
-              height: height * 0.15,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Hello Admin',
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineLarge
-                        !.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
-                  ),
-                  Text(
-                    'Welcome Back',
-                    style: Theme.of(context)
-                        .textTheme
-                        .labelLarge
-                    !.copyWith(fontWeight: FontWeight.bold, color: Colors.white),
-                  )
-                ],
-              ),
-            ),
-            Expanded(
-              child: GridView.builder(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 10.0, vertical: 10.0),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
-                itemBuilder: (context, index) {
-                  final model = dashboardModelList[index];
-                  return Container(
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 10.0, vertical: 10.0),
-                    child: DashboardItemView(
-                      model: model,
-                      onPress: (route) {
-                        context.goNamed(route);
-                      },
-                    ),
-                  );
-                },
-                itemCount: dashboardModelList.length,
-              ),
-            ),
+        appBar: AppBar(
+          title: const Text('Dashboard'),
+          actions: [
+            IconButton(
+              onPressed: () {
+                AuthService.logout()
+                    .then((value) => context.goNamed(LoginPage.routeName));
+              },
+              icon: const Icon(Icons.logout),
+            )
           ],
         ),
-      ),
-    );
+        body: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+          ),
+          itemCount: dashboardModelList.length,
+          itemBuilder: (context, index) {
+            final model = dashboardModelList[index];
+            return DashboardItemView(
+              model: model,
+              onPress: (route) {
+                context.goNamed(route);
+              },
+            );
+          },
+        ));
+    ;
   }
 }

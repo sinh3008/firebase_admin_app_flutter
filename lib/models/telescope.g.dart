@@ -6,8 +6,7 @@ part of 'telescope.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TelescopeImpl _$$TelescopeImplFromJson(Map<String, dynamic> json) =>
-    _$TelescopeImpl(
+_$_Telescope _$$_TelescopeFromJson(Map<String, dynamic> json) => _$_Telescope(
       id: json['id'] as String?,
       model: json['model'] as String,
       brand: Brand.fromJson(json['brand'] as Map<String, dynamic>),
@@ -28,7 +27,7 @@ _$TelescopeImpl _$$TelescopeImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String?,
     );
 
-Map<String, dynamic> _$$TelescopeImplToJson(_$TelescopeImpl instance) =>
+Map<String, dynamic> _$$_TelescopeToJson(_$_Telescope instance) =>
     <String, dynamic>{
       'id': instance.id,
       'model': instance.model,

@@ -68,21 +68,18 @@ class _$BrandCopyWithImpl<$Res, $Val extends Brand>
 }
 
 /// @nodoc
-abstract class _$$BrandImplCopyWith<$Res> implements $BrandCopyWith<$Res> {
-  factory _$$BrandImplCopyWith(
-          _$BrandImpl value, $Res Function(_$BrandImpl) then) =
-      __$$BrandImplCopyWithImpl<$Res>;
+abstract class _$$_BrandCopyWith<$Res> implements $BrandCopyWith<$Res> {
+  factory _$$_BrandCopyWith(_$_Brand value, $Res Function(_$_Brand) then) =
+      __$$_BrandCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? id, String name});
 }
 
 /// @nodoc
-class __$$BrandImplCopyWithImpl<$Res>
-    extends _$BrandCopyWithImpl<$Res, _$BrandImpl>
-    implements _$$BrandImplCopyWith<$Res> {
-  __$$BrandImplCopyWithImpl(
-      _$BrandImpl _value, $Res Function(_$BrandImpl) _then)
+class __$$_BrandCopyWithImpl<$Res> extends _$BrandCopyWithImpl<$Res, _$_Brand>
+    implements _$$_BrandCopyWith<$Res> {
+  __$$_BrandCopyWithImpl(_$_Brand _value, $Res Function(_$_Brand) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -91,7 +88,7 @@ class __$$BrandImplCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = null,
   }) {
-    return _then(_$BrandImpl(
+    return _then(_$_Brand(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -106,11 +103,11 @@ class __$$BrandImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$BrandImpl implements _Brand {
-  _$BrandImpl({this.id, required this.name});
+class _$_Brand implements _Brand {
+  _$_Brand({this.id, required this.name});
 
-  factory _$BrandImpl.fromJson(Map<String, dynamic> json) =>
-      _$$BrandImplFromJson(json);
+  factory _$_Brand.fromJson(Map<String, dynamic> json) =>
+      _$$_BrandFromJson(json);
 
   @override
   String? id;
@@ -125,21 +122,21 @@ class _$BrandImpl implements _Brand {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$BrandImplCopyWith<_$BrandImpl> get copyWith =>
-      __$$BrandImplCopyWithImpl<_$BrandImpl>(this, _$identity);
+  _$$_BrandCopyWith<_$_Brand> get copyWith =>
+      __$$_BrandCopyWithImpl<_$_Brand>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BrandImplToJson(
+    return _$$_BrandToJson(
       this,
     );
   }
 }
 
 abstract class _Brand implements Brand {
-  factory _Brand({String? id, required String name}) = _$BrandImpl;
+  factory _Brand({String? id, required String name}) = _$_Brand;
 
-  factory _Brand.fromJson(Map<String, dynamic> json) = _$BrandImpl.fromJson;
+  factory _Brand.fromJson(Map<String, dynamic> json) = _$_Brand.fromJson;
 
   @override
   String? get id;
@@ -149,6 +146,6 @@ abstract class _Brand implements Brand {
   set name(String value);
   @override
   @JsonKey(ignore: true)
-  _$$BrandImplCopyWith<_$BrandImpl> get copyWith =>
+  _$$_BrandCopyWith<_$_Brand> get copyWith =>
       throw _privateConstructorUsedError;
 }

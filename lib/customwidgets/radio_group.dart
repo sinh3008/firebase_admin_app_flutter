@@ -1,4 +1,3 @@
-import 'package:firebase_admin_app_flutter/utils/color.dart';
 import 'package:flutter/material.dart';
 
 class RadioGroup extends StatefulWidget {
@@ -7,12 +6,13 @@ class RadioGroup extends StatefulWidget {
   final List<String> items;
   final Function(String) onItemSelected;
 
-  const RadioGroup(
-      {super.key,
-      required this.groupValue,
-      required this.label,
-      required this.items,
-      required this.onItemSelected});
+  const RadioGroup({
+    super.key,
+    required this.label,
+    required this.groupValue,
+    required this.items,
+    required this.onItemSelected,
+  });
 
   @override
   State<RadioGroup> createState() => _RadioGroupState();
@@ -30,7 +30,6 @@ class _RadioGroupState extends State<RadioGroup> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: kBgItem,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -52,7 +51,7 @@ class _RadioGroupState extends State<RadioGroup> {
                   ),
                   Text(widget.items[i])
                 ],
-              )
+              ),
           ],
         ),
       ),

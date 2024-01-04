@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:firebase_admin_app_flutter/pages/add_telescope_page.dart';
 import 'package:firebase_admin_app_flutter/pages/brand_page.dart';
-import 'package:flutter/material.dart';
-
-import '../pages/view_telescope_page.dart';
+import 'package:firebase_admin_app_flutter/pages/order_page.dart';
+import 'package:firebase_admin_app_flutter/pages/user_list_page.dart';
+import 'package:firebase_admin_app_flutter/pages/view_telescope_page.dart';
 
 class DashboardModel {
   final String title;
@@ -17,19 +18,9 @@ class DashboardModel {
 }
 
 const List<DashboardModel> dashboardModelList = [
-  DashboardModel(
-    title: 'Add Telescope',
-    iconData: Icons.add,
-    routeName: AddTelescopePage.routeName,
-  ),
-  DashboardModel(
-    title: 'View Telescope',
-    iconData: Icons.inventory,
-    routeName: ViewTelescopePage.routeName,
-  ),
-  DashboardModel(
-    title: 'Brands',
-    iconData: Icons.shopify_sharp,
-    routeName: BrandPage.routeName,
-  ),
+  DashboardModel(title: 'Add Telescope', iconData: Icons.add, routeName: AddTelescopePage.routeName,),
+  DashboardModel(title: 'View Telescope', iconData: Icons.inventory, routeName: ViewTelescopePage.routeName,),
+  DashboardModel(title: 'Brands', iconData: Icons.category, routeName: BrandPage.routeName,),
+  DashboardModel(title: 'Orders', iconData: Icons.monetization_on, routeName: OrderPage.routeName,),
+  DashboardModel(title: 'Users', iconData: Icons.supervised_user_circle_sharp, routeName: UserListPage.routeName,),
 ];

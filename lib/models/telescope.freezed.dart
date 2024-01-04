@@ -203,11 +203,10 @@ class _$TelescopeCopyWithImpl<$Res, $Val extends Telescope>
 }
 
 /// @nodoc
-abstract class _$$TelescopeImplCopyWith<$Res>
-    implements $TelescopeCopyWith<$Res> {
-  factory _$$TelescopeImplCopyWith(
-          _$TelescopeImpl value, $Res Function(_$TelescopeImpl) then) =
-      __$$TelescopeImplCopyWithImpl<$Res>;
+abstract class _$$_TelescopeCopyWith<$Res> implements $TelescopeCopyWith<$Res> {
+  factory _$$_TelescopeCopyWith(
+          _$_Telescope value, $Res Function(_$_Telescope) then) =
+      __$$_TelescopeCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -235,11 +234,11 @@ abstract class _$$TelescopeImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$TelescopeImplCopyWithImpl<$Res>
-    extends _$TelescopeCopyWithImpl<$Res, _$TelescopeImpl>
-    implements _$$TelescopeImplCopyWith<$Res> {
-  __$$TelescopeImplCopyWithImpl(
-      _$TelescopeImpl _value, $Res Function(_$TelescopeImpl) _then)
+class __$$_TelescopeCopyWithImpl<$Res>
+    extends _$TelescopeCopyWithImpl<$Res, _$_Telescope>
+    implements _$$_TelescopeCopyWith<$Res> {
+  __$$_TelescopeCopyWithImpl(
+      _$_Telescope _value, $Res Function(_$_Telescope) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -262,7 +261,7 @@ class __$$TelescopeImplCopyWithImpl<$Res>
     Object? additionalImage = null,
     Object? description = freezed,
   }) {
-    return _then(_$TelescopeImpl(
+    return _then(_$_Telescope(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -334,8 +333,8 @@ class __$$TelescopeImplCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$TelescopeImpl implements _Telescope {
-  _$TelescopeImpl(
+class _$_Telescope implements _Telescope {
+  _$_Telescope(
       {this.id,
       required this.model,
       required this.brand,
@@ -353,8 +352,8 @@ class _$TelescopeImpl implements _Telescope {
       required this.additionalImage,
       this.description});
 
-  factory _$TelescopeImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TelescopeImplFromJson(json);
+  factory _$_Telescope.fromJson(Map<String, dynamic> json) =>
+      _$$_TelescopeFromJson(json);
 
   @override
   String? id;
@@ -399,12 +398,12 @@ class _$TelescopeImpl implements _Telescope {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TelescopeImplCopyWith<_$TelescopeImpl> get copyWith =>
-      __$$TelescopeImplCopyWithImpl<_$TelescopeImpl>(this, _$identity);
+  _$$_TelescopeCopyWith<_$_Telescope> get copyWith =>
+      __$$_TelescopeCopyWithImpl<_$_Telescope>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$TelescopeImplToJson(
+    return _$$_TelescopeToJson(
       this,
     );
   }
@@ -427,10 +426,10 @@ abstract class _Telescope implements Telescope {
       num discount,
       required ImageModel thumbnail,
       required List<ImageModel> additionalImage,
-      String? description}) = _$TelescopeImpl;
+      String? description}) = _$_Telescope;
 
   factory _Telescope.fromJson(Map<String, dynamic> json) =
-      _$TelescopeImpl.fromJson;
+      _$_Telescope.fromJson;
 
   @override
   String? get id;
@@ -482,6 +481,6 @@ abstract class _Telescope implements Telescope {
   set description(String? value);
   @override
   @JsonKey(ignore: true)
-  _$$TelescopeImplCopyWith<_$TelescopeImpl> get copyWith =>
+  _$$_TelescopeCopyWith<_$_Telescope> get copyWith =>
       throw _privateConstructorUsedError;
 }

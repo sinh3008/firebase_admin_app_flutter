@@ -21,11 +21,8 @@ ImageModel _$ImageModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ImageModel {
   String get imageName => throw _privateConstructorUsedError;
-  set imageName(String value) => throw _privateConstructorUsedError;
   String get directoryName => throw _privateConstructorUsedError;
-  set directoryName(String value) => throw _privateConstructorUsedError;
   String get downloadUrl => throw _privateConstructorUsedError;
-  set downloadUrl(String value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -77,22 +74,22 @@ class _$ImageModelCopyWithImpl<$Res, $Val extends ImageModel>
 }
 
 /// @nodoc
-abstract class _$$ImageModelImplCopyWith<$Res>
+abstract class _$$_ImageModelCopyWith<$Res>
     implements $ImageModelCopyWith<$Res> {
-  factory _$$ImageModelImplCopyWith(
-          _$ImageModelImpl value, $Res Function(_$ImageModelImpl) then) =
-      __$$ImageModelImplCopyWithImpl<$Res>;
+  factory _$$_ImageModelCopyWith(
+          _$_ImageModel value, $Res Function(_$_ImageModel) then) =
+      __$$_ImageModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String imageName, String directoryName, String downloadUrl});
 }
 
 /// @nodoc
-class __$$ImageModelImplCopyWithImpl<$Res>
-    extends _$ImageModelCopyWithImpl<$Res, _$ImageModelImpl>
-    implements _$$ImageModelImplCopyWith<$Res> {
-  __$$ImageModelImplCopyWithImpl(
-      _$ImageModelImpl _value, $Res Function(_$ImageModelImpl) _then)
+class __$$_ImageModelCopyWithImpl<$Res>
+    extends _$ImageModelCopyWithImpl<$Res, _$_ImageModel>
+    implements _$$_ImageModelCopyWith<$Res> {
+  __$$_ImageModelCopyWithImpl(
+      _$_ImageModel _value, $Res Function(_$_ImageModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -102,7 +99,7 @@ class __$$ImageModelImplCopyWithImpl<$Res>
     Object? directoryName = null,
     Object? downloadUrl = null,
   }) {
-    return _then(_$ImageModelImpl(
+    return _then(_$_ImageModel(
       imageName: null == imageName
           ? _value.imageName
           : imageName // ignore: cast_nullable_to_non_nullable
@@ -121,36 +118,54 @@ class __$$ImageModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ImageModelImpl implements _ImageModel {
-  _$ImageModelImpl(
+class _$_ImageModel implements _ImageModel {
+  _$_ImageModel(
       {required this.imageName,
       required this.directoryName,
       required this.downloadUrl});
 
-  factory _$ImageModelImpl.fromJson(Map<String, dynamic> json) =>
-      _$$ImageModelImplFromJson(json);
+  factory _$_ImageModel.fromJson(Map<String, dynamic> json) =>
+      _$$_ImageModelFromJson(json);
 
   @override
-  String imageName;
+  final String imageName;
   @override
-  String directoryName;
+  final String directoryName;
   @override
-  String downloadUrl;
+  final String downloadUrl;
 
   @override
   String toString() {
     return 'ImageModel(imageName: $imageName, directoryName: $directoryName, downloadUrl: $downloadUrl)';
   }
 
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ImageModel &&
+            (identical(other.imageName, imageName) ||
+                other.imageName == imageName) &&
+            (identical(other.directoryName, directoryName) ||
+                other.directoryName == directoryName) &&
+            (identical(other.downloadUrl, downloadUrl) ||
+                other.downloadUrl == downloadUrl));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, imageName, directoryName, downloadUrl);
+
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ImageModelImplCopyWith<_$ImageModelImpl> get copyWith =>
-      __$$ImageModelImplCopyWithImpl<_$ImageModelImpl>(this, _$identity);
+  _$$_ImageModelCopyWith<_$_ImageModel> get copyWith =>
+      __$$_ImageModelCopyWithImpl<_$_ImageModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ImageModelImplToJson(
+    return _$$_ImageModelToJson(
       this,
     );
   }
@@ -158,24 +173,21 @@ class _$ImageModelImpl implements _ImageModel {
 
 abstract class _ImageModel implements ImageModel {
   factory _ImageModel(
-      {required String imageName,
-      required String directoryName,
-      required String downloadUrl}) = _$ImageModelImpl;
+      {required final String imageName,
+      required final String directoryName,
+      required final String downloadUrl}) = _$_ImageModel;
 
   factory _ImageModel.fromJson(Map<String, dynamic> json) =
-      _$ImageModelImpl.fromJson;
+      _$_ImageModel.fromJson;
 
   @override
   String get imageName;
-  set imageName(String value);
   @override
   String get directoryName;
-  set directoryName(String value);
   @override
   String get downloadUrl;
-  set downloadUrl(String value);
   @override
   @JsonKey(ignore: true)
-  _$$ImageModelImplCopyWith<_$ImageModelImpl> get copyWith =>
+  _$$_ImageModelCopyWith<_$_ImageModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
