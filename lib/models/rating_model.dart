@@ -5,6 +5,7 @@ part 'rating_model.g.dart';
 
 @unfreezed
 class RatingModel with _$RatingModel {
+  // ignore: invalid_annotation_target
   @JsonSerializable(explicitToJson: true)
   factory RatingModel({
     required AppUser appUser,

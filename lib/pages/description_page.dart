@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
@@ -22,11 +24,6 @@ class _DescriptionPageState extends State<DescriptionPage> {
   final _controller = TextEditingController();
   String? description;
 
-  /*@override
-  void initState() {
-    _controller.text = telescopeDescription;
-    super.initState();
-  }*/
 
   @override
   void didChangeDependencies() {
@@ -59,7 +56,7 @@ class _DescriptionPageState extends State<DescriptionPage> {
           controller: _controller,
           maxLines: 1000,
           autofocus: true,
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             border: OutlineInputBorder(),
           ),
         ),

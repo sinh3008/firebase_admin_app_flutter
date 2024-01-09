@@ -7,6 +7,7 @@ part 'telescope.g.dart';
 
 @unfreezed
 class Telescope with _$Telescope {
+  // ignore: invalid_annotation_target
   @JsonSerializable(explicitToJson: true)
   factory Telescope({
     String? id,

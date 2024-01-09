@@ -8,6 +8,7 @@ part 'app_user.g.dart';
 
 @unfreezed
 class AppUser with _$AppUser {
+  // ignore: invalid_annotation_target
   @JsonSerializable(explicitToJson: true)
   factory AppUser({
     required String uid,

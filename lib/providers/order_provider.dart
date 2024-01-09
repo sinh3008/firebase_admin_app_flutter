@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/foundation.dart';
 import 'package:firebase_admin_app_flutter/models/order_model.dart';
 import '../auth/auth_service.dart';
