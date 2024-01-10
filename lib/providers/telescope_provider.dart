@@ -28,12 +28,12 @@ class TelescopeProvider with ChangeNotifier {
     });
   }
 
-  getAllTelescopes() {
-    DbHelper.getAllTelescopes().listen((snapshot) {
-      telescopeList = List.generate(snapshot.docs.length, (index) => Telescope.fromJson(snapshot.docs[index].data()));
-      notifyListeners();
-    });
-  }
+  // getAllTelescopes() {
+  //   DbHelper.getAllTelescopes().listen((snapshot) {
+  //     telescopeList = List.generate(snapshot.docs.length, (index) => Telescope.fromJson(snapshot.docs[index].data()));
+  //     notifyListeners();
+  //   });
+  // }
 
   Telescope findTelescopeById(String id) =>
       telescopeList.firstWhere((element) => element.id == id);

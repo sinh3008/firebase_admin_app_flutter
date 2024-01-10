@@ -118,10 +118,10 @@ class _$AppUserCopyWithImpl<$Res, $Val extends AppUser>
 }
 
 /// @nodoc
-abstract class _$$_AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
-  factory _$$_AppUserCopyWith(
-          _$_AppUser value, $Res Function(_$_AppUser) then) =
-      __$$_AppUserCopyWithImpl<$Res>;
+abstract class _$$AppUserImplCopyWith<$Res> implements $AppUserCopyWith<$Res> {
+  factory _$$AppUserImplCopyWith(
+          _$AppUserImpl value, $Res Function(_$AppUserImpl) then) =
+      __$$AppUserImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -137,10 +137,11 @@ abstract class _$$_AppUserCopyWith<$Res> implements $AppUserCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AppUserCopyWithImpl<$Res>
-    extends _$AppUserCopyWithImpl<$Res, _$_AppUser>
-    implements _$$_AppUserCopyWith<$Res> {
-  __$$_AppUserCopyWithImpl(_$_AppUser _value, $Res Function(_$_AppUser) _then)
+class __$$AppUserImplCopyWithImpl<$Res>
+    extends _$AppUserCopyWithImpl<$Res, _$AppUserImpl>
+    implements _$$AppUserImplCopyWith<$Res> {
+  __$$AppUserImplCopyWithImpl(
+      _$AppUserImpl _value, $Res Function(_$AppUserImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -153,7 +154,7 @@ class __$$_AppUserCopyWithImpl<$Res>
     Object? phone = freezed,
     Object? userCreationTime = freezed,
   }) {
-    return _then(_$_AppUser(
+    return _then(_$AppUserImpl(
       uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
@@ -185,8 +186,8 @@ class __$$_AppUserCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_AppUser implements _AppUser {
-  _$_AppUser(
+class _$AppUserImpl implements _AppUser {
+  _$AppUserImpl(
       {required this.uid,
       required this.email,
       this.userAddress,
@@ -194,8 +195,8 @@ class _$_AppUser implements _AppUser {
       this.phone,
       @TimestampConverter() this.userCreationTime});
 
-  factory _$_AppUser.fromJson(Map<String, dynamic> json) =>
-      _$$_AppUserFromJson(json);
+  factory _$AppUserImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AppUserImplFromJson(json);
 
   @override
   String uid;
@@ -219,12 +220,12 @@ class _$_AppUser implements _AppUser {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AppUserCopyWith<_$_AppUser> get copyWith =>
-      __$$_AppUserCopyWithImpl<_$_AppUser>(this, _$identity);
+  _$$AppUserImplCopyWith<_$AppUserImpl> get copyWith =>
+      __$$AppUserImplCopyWithImpl<_$AppUserImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AppUserToJson(
+    return _$$AppUserImplToJson(
       this,
     );
   }
@@ -237,9 +238,9 @@ abstract class _AppUser implements AppUser {
       UserAddress? userAddress,
       String? userName,
       String? phone,
-      @TimestampConverter() Timestamp? userCreationTime}) = _$_AppUser;
+      @TimestampConverter() Timestamp? userCreationTime}) = _$AppUserImpl;
 
-  factory _AppUser.fromJson(Map<String, dynamic> json) = _$_AppUser.fromJson;
+  factory _AppUser.fromJson(Map<String, dynamic> json) = _$AppUserImpl.fromJson;
 
   @override
   String get uid;
@@ -263,6 +264,6 @@ abstract class _AppUser implements AppUser {
   set userCreationTime(Timestamp? value);
   @override
   @JsonKey(ignore: true)
-  _$$_AppUserCopyWith<_$_AppUser> get copyWith =>
+  _$$AppUserImplCopyWith<_$AppUserImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -20,12 +20,12 @@ UserAddress _$UserAddressFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserAddress {
-  String get streetAddress => throw _privateConstructorUsedError;
-  set streetAddress(String value) => throw _privateConstructorUsedError;
-  String get city => throw _privateConstructorUsedError;
-  set city(String value) => throw _privateConstructorUsedError;
-  String get postCode => throw _privateConstructorUsedError;
-  set postCode(String value) => throw _privateConstructorUsedError;
+  String? get streetAddress => throw _privateConstructorUsedError;
+  set streetAddress(String? value) => throw _privateConstructorUsedError;
+  String? get city => throw _privateConstructorUsedError;
+  set city(String? value) => throw _privateConstructorUsedError;
+  String? get postCode => throw _privateConstructorUsedError;
+  set postCode(String? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,7 +39,7 @@ abstract class $UserAddressCopyWith<$Res> {
           UserAddress value, $Res Function(UserAddress) then) =
       _$UserAddressCopyWithImpl<$Res, UserAddress>;
   @useResult
-  $Res call({String streetAddress, String city, String postCode});
+  $Res call({String? streetAddress, String? city, String? postCode});
 }
 
 /// @nodoc
@@ -55,87 +55,84 @@ class _$UserAddressCopyWithImpl<$Res, $Val extends UserAddress>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? streetAddress = null,
-    Object? city = null,
-    Object? postCode = null,
+    Object? streetAddress = freezed,
+    Object? city = freezed,
+    Object? postCode = freezed,
   }) {
     return _then(_value.copyWith(
-      streetAddress: null == streetAddress
+      streetAddress: freezed == streetAddress
           ? _value.streetAddress
           : streetAddress // ignore: cast_nullable_to_non_nullable
-              as String,
-      city: null == city
+              as String?,
+      city: freezed == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
-              as String,
-      postCode: null == postCode
+              as String?,
+      postCode: freezed == postCode
           ? _value.postCode
           : postCode // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_UserAddressCopyWith<$Res>
+abstract class _$$UserAddressImplCopyWith<$Res>
     implements $UserAddressCopyWith<$Res> {
-  factory _$$_UserAddressCopyWith(
-          _$_UserAddress value, $Res Function(_$_UserAddress) then) =
-      __$$_UserAddressCopyWithImpl<$Res>;
+  factory _$$UserAddressImplCopyWith(
+          _$UserAddressImpl value, $Res Function(_$UserAddressImpl) then) =
+      __$$UserAddressImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String streetAddress, String city, String postCode});
+  $Res call({String? streetAddress, String? city, String? postCode});
 }
 
 /// @nodoc
-class __$$_UserAddressCopyWithImpl<$Res>
-    extends _$UserAddressCopyWithImpl<$Res, _$_UserAddress>
-    implements _$$_UserAddressCopyWith<$Res> {
-  __$$_UserAddressCopyWithImpl(
-      _$_UserAddress _value, $Res Function(_$_UserAddress) _then)
+class __$$UserAddressImplCopyWithImpl<$Res>
+    extends _$UserAddressCopyWithImpl<$Res, _$UserAddressImpl>
+    implements _$$UserAddressImplCopyWith<$Res> {
+  __$$UserAddressImplCopyWithImpl(
+      _$UserAddressImpl _value, $Res Function(_$UserAddressImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? streetAddress = null,
-    Object? city = null,
-    Object? postCode = null,
+    Object? streetAddress = freezed,
+    Object? city = freezed,
+    Object? postCode = freezed,
   }) {
-    return _then(_$_UserAddress(
-      streetAddress: null == streetAddress
+    return _then(_$UserAddressImpl(
+      streetAddress: freezed == streetAddress
           ? _value.streetAddress
           : streetAddress // ignore: cast_nullable_to_non_nullable
-              as String,
-      city: null == city
+              as String?,
+      city: freezed == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
-              as String,
-      postCode: null == postCode
+              as String?,
+      postCode: freezed == postCode
           ? _value.postCode
           : postCode // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_UserAddress implements _UserAddress {
-  _$_UserAddress(
-      {required this.streetAddress,
-      required this.city,
-      required this.postCode});
+class _$UserAddressImpl implements _UserAddress {
+  _$UserAddressImpl({this.streetAddress, this.city, this.postCode});
 
-  factory _$_UserAddress.fromJson(Map<String, dynamic> json) =>
-      _$$_UserAddressFromJson(json);
+  factory _$UserAddressImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserAddressImplFromJson(json);
 
   @override
-  String streetAddress;
+  String? streetAddress;
   @override
-  String city;
+  String? city;
   @override
-  String postCode;
+  String? postCode;
 
   @override
   String toString() {
@@ -145,12 +142,12 @@ class _$_UserAddress implements _UserAddress {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserAddressCopyWith<_$_UserAddress> get copyWith =>
-      __$$_UserAddressCopyWithImpl<_$_UserAddress>(this, _$identity);
+  _$$UserAddressImplCopyWith<_$UserAddressImpl> get copyWith =>
+      __$$UserAddressImplCopyWithImpl<_$UserAddressImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserAddressToJson(
+    return _$$UserAddressImplToJson(
       this,
     );
   }
@@ -158,24 +155,24 @@ class _$_UserAddress implements _UserAddress {
 
 abstract class _UserAddress implements UserAddress {
   factory _UserAddress(
-      {required String streetAddress,
-      required String city,
-      required String postCode}) = _$_UserAddress;
+      {String? streetAddress,
+      String? city,
+      String? postCode}) = _$UserAddressImpl;
 
   factory _UserAddress.fromJson(Map<String, dynamic> json) =
-      _$_UserAddress.fromJson;
+      _$UserAddressImpl.fromJson;
 
   @override
-  String get streetAddress;
-  set streetAddress(String value);
+  String? get streetAddress;
+  set streetAddress(String? value);
   @override
-  String get city;
-  set city(String value);
+  String? get city;
+  set city(String? value);
   @override
-  String get postCode;
-  set postCode(String value);
+  String? get postCode;
+  set postCode(String? value);
   @override
   @JsonKey(ignore: true)
-  _$$_UserAddressCopyWith<_$_UserAddress> get copyWith =>
+  _$$UserAddressImplCopyWith<_$UserAddressImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

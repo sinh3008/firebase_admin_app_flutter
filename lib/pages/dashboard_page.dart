@@ -1,6 +1,7 @@
 // ignore: unused_import
 // ignore_for_file: empty_statements, unused_import, duplicate_ignore, dead_code
 
+import 'package:firebase_admin_app_flutter/bloc/brand_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,8 @@ import 'package:firebase_admin_app_flutter/pages/order_details_Page.dart';
 import 'package:firebase_admin_app_flutter/providers/order_provider.dart';
 import 'package:firebase_admin_app_flutter/providers/telescope_provider.dart';
 import 'package:firebase_admin_app_flutter/providers/user_provider.dart';
+
+import '../bloc/telescope_bloc.dart';
 
 class DashboardPage extends StatefulWidget {
   static const String routeName = '/';
@@ -57,10 +60,13 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   void didChangeDependencies() {
-    Provider.of<TelescopeProvider>(context, listen: false).getAllBrands();
-    Provider.of<TelescopeProvider>(context, listen: false).getAllTelescopes();
-    Provider.of<OrderProvider>(context, listen: false).getAllOrders();
-    Provider.of<UserProvider>(context, listen: false).getAllUsers();
+    // Provider.of<TelescopeProvider>(context, listen: false).getAllBrands();
+    // Provider.of<TelescopeProvider>(context, listen: false).getAllTelescopes();
+    // Provider.of<OrderProvider>(context, listen: false).getAllOrders();
+    // Provider.of<UserProvider>(context, listen: false).getAllUsers();
+    context.read<TelescopeBloc>().add(const TelescopeEvent.getAllTelescopes());
+    context.read<BrandBloc>().add(const BrandEvent.getAllBrand());
+
     super.didChangeDependencies();
   }
   @override

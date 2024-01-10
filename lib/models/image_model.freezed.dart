@@ -74,22 +74,22 @@ class _$ImageModelCopyWithImpl<$Res, $Val extends ImageModel>
 }
 
 /// @nodoc
-abstract class _$$_ImageModelCopyWith<$Res>
+abstract class _$$ImageModelImplCopyWith<$Res>
     implements $ImageModelCopyWith<$Res> {
-  factory _$$_ImageModelCopyWith(
-          _$_ImageModel value, $Res Function(_$_ImageModel) then) =
-      __$$_ImageModelCopyWithImpl<$Res>;
+  factory _$$ImageModelImplCopyWith(
+          _$ImageModelImpl value, $Res Function(_$ImageModelImpl) then) =
+      __$$ImageModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String imageName, String directoryName, String downloadUrl});
 }
 
 /// @nodoc
-class __$$_ImageModelCopyWithImpl<$Res>
-    extends _$ImageModelCopyWithImpl<$Res, _$_ImageModel>
-    implements _$$_ImageModelCopyWith<$Res> {
-  __$$_ImageModelCopyWithImpl(
-      _$_ImageModel _value, $Res Function(_$_ImageModel) _then)
+class __$$ImageModelImplCopyWithImpl<$Res>
+    extends _$ImageModelCopyWithImpl<$Res, _$ImageModelImpl>
+    implements _$$ImageModelImplCopyWith<$Res> {
+  __$$ImageModelImplCopyWithImpl(
+      _$ImageModelImpl _value, $Res Function(_$ImageModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +99,7 @@ class __$$_ImageModelCopyWithImpl<$Res>
     Object? directoryName = null,
     Object? downloadUrl = null,
   }) {
-    return _then(_$_ImageModel(
+    return _then(_$ImageModelImpl(
       imageName: null == imageName
           ? _value.imageName
           : imageName // ignore: cast_nullable_to_non_nullable
@@ -118,14 +118,14 @@ class __$$_ImageModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ImageModel implements _ImageModel {
-  _$_ImageModel(
+class _$ImageModelImpl implements _ImageModel {
+  _$ImageModelImpl(
       {required this.imageName,
       required this.directoryName,
       required this.downloadUrl});
 
-  factory _$_ImageModel.fromJson(Map<String, dynamic> json) =>
-      _$$_ImageModelFromJson(json);
+  factory _$ImageModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ImageModelImplFromJson(json);
 
   @override
   final String imageName;
@@ -140,10 +140,10 @@ class _$_ImageModel implements _ImageModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ImageModel &&
+            other is _$ImageModelImpl &&
             (identical(other.imageName, imageName) ||
                 other.imageName == imageName) &&
             (identical(other.directoryName, directoryName) ||
@@ -160,12 +160,12 @@ class _$_ImageModel implements _ImageModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ImageModelCopyWith<_$_ImageModel> get copyWith =>
-      __$$_ImageModelCopyWithImpl<_$_ImageModel>(this, _$identity);
+  _$$ImageModelImplCopyWith<_$ImageModelImpl> get copyWith =>
+      __$$ImageModelImplCopyWithImpl<_$ImageModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ImageModelToJson(
+    return _$$ImageModelImplToJson(
       this,
     );
   }
@@ -175,10 +175,10 @@ abstract class _ImageModel implements ImageModel {
   factory _ImageModel(
       {required final String imageName,
       required final String directoryName,
-      required final String downloadUrl}) = _$_ImageModel;
+      required final String downloadUrl}) = _$ImageModelImpl;
 
   factory _ImageModel.fromJson(Map<String, dynamic> json) =
-      _$_ImageModel.fromJson;
+      _$ImageModelImpl.fromJson;
 
   @override
   String get imageName;
@@ -188,6 +188,6 @@ abstract class _ImageModel implements ImageModel {
   String get downloadUrl;
   @override
   @JsonKey(ignore: true)
-  _$$_ImageModelCopyWith<_$_ImageModel> get copyWith =>
+  _$$ImageModelImplCopyWith<_$ImageModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

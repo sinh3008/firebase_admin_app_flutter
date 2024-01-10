@@ -124,11 +124,11 @@ class _$OrderModelCopyWithImpl<$Res, $Val extends OrderModel>
 }
 
 /// @nodoc
-abstract class _$$_OrderModelCopyWith<$Res>
+abstract class _$$OrderModelImplCopyWith<$Res>
     implements $OrderModelCopyWith<$Res> {
-  factory _$$_OrderModelCopyWith(
-          _$_OrderModel value, $Res Function(_$_OrderModel) then) =
-      __$$_OrderModelCopyWithImpl<$Res>;
+  factory _$$OrderModelImplCopyWith(
+          _$OrderModelImpl value, $Res Function(_$OrderModelImpl) then) =
+      __$$OrderModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -145,11 +145,11 @@ abstract class _$$_OrderModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_OrderModelCopyWithImpl<$Res>
-    extends _$OrderModelCopyWithImpl<$Res, _$_OrderModel>
-    implements _$$_OrderModelCopyWith<$Res> {
-  __$$_OrderModelCopyWithImpl(
-      _$_OrderModel _value, $Res Function(_$_OrderModel) _then)
+class __$$OrderModelImplCopyWithImpl<$Res>
+    extends _$OrderModelCopyWithImpl<$Res, _$OrderModelImpl>
+    implements _$$OrderModelImplCopyWith<$Res> {
+  __$$OrderModelImplCopyWithImpl(
+      _$OrderModelImpl _value, $Res Function(_$OrderModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -163,7 +163,7 @@ class __$$_OrderModelCopyWithImpl<$Res>
     Object? orderDate = null,
     Object? itemDetails = null,
   }) {
-    return _then(_$_OrderModel(
+    return _then(_$OrderModelImpl(
       orderId: null == orderId
           ? _value.orderId
           : orderId // ignore: cast_nullable_to_non_nullable
@@ -199,8 +199,8 @@ class __$$_OrderModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_OrderModel implements _OrderModel {
-  _$_OrderModel(
+class _$OrderModelImpl implements _OrderModel {
+  _$OrderModelImpl(
       {required this.orderId,
       required this.appUser,
       required this.orderStatus,
@@ -209,8 +209,8 @@ class _$_OrderModel implements _OrderModel {
       @TimestampConverter() required this.orderDate,
       required this.itemDetails});
 
-  factory _$_OrderModel.fromJson(Map<String, dynamic> json) =>
-      _$$_OrderModelFromJson(json);
+  factory _$OrderModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OrderModelImplFromJson(json);
 
   @override
   String orderId;
@@ -236,12 +236,12 @@ class _$_OrderModel implements _OrderModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OrderModelCopyWith<_$_OrderModel> get copyWith =>
-      __$$_OrderModelCopyWithImpl<_$_OrderModel>(this, _$identity);
+  _$$OrderModelImplCopyWith<_$OrderModelImpl> get copyWith =>
+      __$$OrderModelImplCopyWithImpl<_$OrderModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OrderModelToJson(
+    return _$$OrderModelImplToJson(
       this,
     );
   }
@@ -255,10 +255,10 @@ abstract class _OrderModel implements OrderModel {
       required String paymentMethod,
       required num totalAmount,
       @TimestampConverter() required Timestamp orderDate,
-      required List<CartModel> itemDetails}) = _$_OrderModel;
+      required List<CartModel> itemDetails}) = _$OrderModelImpl;
 
   factory _OrderModel.fromJson(Map<String, dynamic> json) =
-      _$_OrderModel.fromJson;
+      _$OrderModelImpl.fromJson;
 
   @override
   String get orderId;
@@ -285,6 +285,6 @@ abstract class _OrderModel implements OrderModel {
   set itemDetails(List<CartModel> value);
   @override
   @JsonKey(ignore: true)
-  _$$_OrderModelCopyWith<_$_OrderModel> get copyWith =>
+  _$$OrderModelImplCopyWith<_$OrderModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

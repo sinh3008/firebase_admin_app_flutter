@@ -6,12 +6,13 @@ part of 'brand.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Brand _$$_BrandFromJson(Map<String, dynamic> json) => _$_Brand(
+_$BrandImpl _$$BrandImplFromJson(Map<String, dynamic> json) => _$BrandImpl(
       id: json['id'] as String?,
       name: json['name'] as String,
     );
 
-Map<String, dynamic> _$$_BrandToJson(_$_Brand instance) => <String, dynamic>{
+Map<String, dynamic> _$$BrandImplToJson(_$BrandImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
     };

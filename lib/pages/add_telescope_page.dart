@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:firebase_admin_app_flutter/bloc/brand_bloc.dart';
+import 'package:firebase_admin_app_flutter/bloc/telescope_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:image_picker/image_picker.dart';
@@ -9,7 +11,7 @@ import 'package:firebase_admin_app_flutter/models/telescope.dart';
 import 'package:firebase_admin_app_flutter/providers/telescope_provider.dart';
 import 'package:firebase_admin_app_flutter/utils/constants.dart';
 import 'package:firebase_admin_app_flutter/utils/widget_functions.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../models/brand.dart';
 
 class AddTelescopePage extends StatefulWidget {
@@ -92,35 +94,39 @@ class _AddTelescopePageState extends State<AddTelescopePage> {
                   ],
                 ),
               ),
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Consumer<TelescopeProvider>(
-                    builder: (context, provider, child) =>
-                        DropdownButtonFormField<Brand>(
-                      decoration:
-                          const InputDecoration(border: InputBorder.none),
-                      hint: const Text('Select Brand'),
-                      isExpanded: true,
-                      value: brand,
-                      validator: (value) {
-                        if (value == null) {
-                          return 'Please select a brand';
-                        }
-                        return null;
-                      },
-                      items: provider.brandList
-                          .map((item) => DropdownMenuItem<Brand>(
-                                value: item,
-                                child: Text(item.name),
-                              ))
-                          .toList(),
-                      onChanged: (value) {
-                        brand = value;
-                      },
+              BlocBuilder<BrandBloc, BrandState>(
+                builder: (context, state) {
+                  return state.when(
+                    initial: () => Container(),
+                    loading: () => const CircularProgressIndicator(),
+                    loaded: (list) => Card(
+                      child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: DropdownButtonFormField<Brand>(
+                            decoration:
+                                const InputDecoration(border: InputBorder.none),
+                            hint: const Text('Select Brand'),
+                            isExpanded: true,
+                            value: brand,
+                            validator: (value) {
+                              if (value == null) {
+                                return 'Please select a brand';
+                              }
+                              return null;
+                            },
+                            items: list
+                                .map((item) => DropdownMenuItem<Brand>(
+                                      value: item,
+                                      child: Text(item.name),
+                                    ))
+                                .toList(),
+                            onChanged: (value) {
+                              brand = value;
+                            },
+                          )),
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
               RadioGroup(
                 label: 'Select Telescope Type',
@@ -276,7 +282,7 @@ class _AddTelescopePageState extends State<AddTelescopePage> {
 
   void getImage(ImageSource source) async {
     final file =
-    await ImagePicker().pickImage(source: source, imageQuality: 50);
+        await ImagePicker().pickImage(source: source, imageQuality: 50);
     if (file != null) {
       setState(() {
         imageLocalPath = file.path;
@@ -310,8 +316,9 @@ class _AddTelescopePageState extends State<AddTelescopePage> {
           thumbnail: imageModel,
           additionalImage: [],
         );
-        await Provider.of<TelescopeProvider>(context, listen: false)
-        .addTelescope(telescope);
+        context
+            .read<TelescopeBloc>()
+            .add(TelescopeEvent.addTelescope(telescope));
         EasyLoading.dismiss();
         showMsg(context, 'Saved');
         _resetFields();

@@ -1,8 +1,12 @@
 // ignore_for_file: avoid_print
 
+import 'package:firebase_admin_app_flutter/bloc/brand_bloc.dart';
+import 'package:firebase_admin_app_flutter/bloc/telescope_bloc.dart';
+import 'package:firebase_admin_app_flutter/pages/bloc_telescope.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -24,12 +28,11 @@ import 'pages/login_page.dart';
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  if(message.notification != null) {
+  if (message.notification != null) {
     print('You have a notification: ${message.notification!.title}');
   }
   print('Data: ${message.data['value']}');
 }
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,13 +41,29 @@ void main() async {
   );
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await FirebaseMessaging.instance.subscribeToTopic('order');
-  runApp(MultiProvider(
+  runApp(
+    // MultiProvider(
+    //   providers: [
+    //     ChangeNotifierProvider(create: (context) => TelescopeProvider()),
+    //     ChangeNotifierProvider(create: (context) => OrderProvider()),
+    //     ChangeNotifierProvider(create: (context) => UserProvider()),
+    //   ],
+    //   child: MyApp(),
+    // ),
+    MultiBlocProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => TelescopeProvider()),
-        ChangeNotifierProvider(create: (context) => OrderProvider()),
-        ChangeNotifierProvider(create: (context) => UserProvider()),
+        BlocProvider<TelescopeBloc>(
+          create: (BuildContext context) {
+            return TelescopeBloc();
+          },
+        ),
+        BlocProvider(
+          create: (context) => BrandBloc(),
+        ),
       ],
-      child: MyApp()));
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -65,72 +84,86 @@ class MyApp extends StatelessWidget {
   }
 
   final _router = GoRouter(
-    initialLocation: DashboardPage.routeName,
-    redirect: (context, state) {
-      if(AuthService.currentUser == null) {
-        return LoginPage.routeName;
-      }
-      return null;
-    },
-    routes: [
-      GoRoute(
-        name: DashboardPage.routeName,
-        path: DashboardPage.routeName,
-        builder: (context, state) => const DashboardPage(),
-        routes: [
-          GoRoute(
-            name: AddTelescopePage.routeName,
-            path: AddTelescopePage.routeName,
-            builder: (context, state) => const AddTelescopePage(),
-          ),
-          GoRoute(
-            name: ViewTelescopePage.routeName,
-            path: ViewTelescopePage.routeName,
-            builder: (context, state) => const ViewTelescopePage(),
-            routes: [
-              GoRoute(
-                name: TelescopeDetailsPage.routeName,
-                path: TelescopeDetailsPage.routeName,
-                builder: (context, state) => TelescopeDetailsPage(id: state.extra! as String,),
+      initialLocation: DashboardPage.routeName,
+      redirect: (context, state) {
+        if (AuthService.currentUser == null) {
+          return LoginPage.routeName;
+        }
+        return null;
+      },
+      routes: [
+        GoRoute(
+          name: DashboardPage.routeName,
+          path: DashboardPage.routeName,
+          builder: (context, state) => const DashboardPage(),
+          routes: [
+            GoRoute(
+              name: AddTelescopePage.routeName,
+              path: AddTelescopePage.routeName,
+              builder: (context, state) => const AddTelescopePage(),
+            ),
+            GoRoute(
+                name: BlocTelescope.routeName,
+                path: BlocTelescope.routeName,
+                builder: (context, state) => const BlocTelescope(),
+                routes: [
+                  // GoRoute(
+                  //   name: TelescopeDetailsPage.routeName,
+                  //   path: TelescopeDetailsPage.routeName,
+                  //   builder: (context, state) => TelescopeDetailsPage(
+                  //     id: state.extra! as String,
+                  //   ),
+                  //   // routes: [
+                  //   //   GoRoute(
+                  //   //     name: DescriptionPage.routeName,
+                  //   //     path: DescriptionPage.routeName,
+                  //   //     builder: (context, state) => DescriptionPage(id: state.extra! as String,),
+                  //   //   ),
+                  //   // ]
+                  // ),
+                  GoRoute(
+                    name: TelescopePageBloc.routeName,
+                    path: TelescopePageBloc.routeName,
+                    builder: (context, state) => const TelescopePageBloc(),
+                    // routes: [
+                    //   GoRoute(
+                    //     name: DescriptionPage.routeName,
+                    //     path: DescriptionPage.routeName,
+                    //     builder: (context, state) => DescriptionPage(id: state.extra! as String,),
+                    //   ),
+                    // ]
+                  ),
+                ]),
+            GoRoute(
+              name: BrandPage.routeName,
+              path: BrandPage.routeName,
+              builder: (context, state) => const BrandPage(),
+            ),
+            GoRoute(
+              name: UserListPage.routeName,
+              path: UserListPage.routeName,
+              builder: (context, state) => const UserListPage(),
+            ),
+            GoRoute(
+                name: OrderPage.routeName,
+                path: OrderPage.routeName,
+                builder: (context, state) => const OrderPage(),
                 routes: [
                   GoRoute(
-                    name: DescriptionPage.routeName,
-                    path: DescriptionPage.routeName,
-                    builder: (context, state) => DescriptionPage(id: state.extra! as String,),
+                    name: OrderDetailsPage.routeName,
+                    path: OrderDetailsPage.routeName,
+                    builder: (context, state) =>
+                        OrderDetailsPage(
+                          orderId: state.extra! as String,
+                        ),
                   ),
-                ]
-              ),
-            ]
-          ),
-          GoRoute(
-            name: BrandPage.routeName,
-            path: BrandPage.routeName,
-            builder: (context, state) => const BrandPage(),
-          ),
-          GoRoute(
-            name: UserListPage.routeName,
-            path: UserListPage.routeName,
-            builder: (context, state) => const UserListPage(),
-          ),
-          GoRoute(
-            name: OrderPage.routeName,
-            path: OrderPage.routeName,
-            builder: (context, state) => const OrderPage(),
-            routes: [
-              GoRoute(
-                name: OrderDetailsPage.routeName,
-                path: OrderDetailsPage.routeName,
-                builder: (context, state) => OrderDetailsPage(orderId: state.extra! as String,),
-              ),
-            ]
-          ),
-        ],
-      ),
-      GoRoute(
-        name: LoginPage.routeName,
-        path: LoginPage.routeName,
-        builder: (context, state) => const LoginPage(),
-      ),
-    ]
-  );
+                ]),
+          ],
+        ),
+        GoRoute(
+          name: LoginPage.routeName,
+          path: LoginPage.routeName,
+          builder: (context, state) => const LoginPage(),
+        ),
+      ]);
 }

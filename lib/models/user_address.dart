@@ -5,9 +5,9 @@ part 'user_address.g.dart';
 @unfreezed
 class UserAddress with _$UserAddress {
   factory UserAddress({
-    required String streetAddress,
-    required String city,
-    required String postCode,
+     String? streetAddress,
+     String? city,
+     String? postCode,
   }) = _UserAddress;
 
   factory UserAddress.fromJson(Map<String, dynamic> json) =>
